@@ -43,3 +43,17 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+# System out Not File
+node_modules/
+
+dist/
+
+.angular/
+
+.vscode/settings.json
+
+coverage/
+
+*.log
+
+.env

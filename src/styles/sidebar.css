@@ -7,6 +7,8 @@
   overflow-y: auto;
   background: var(--app-sidebar-bg);
   color: var(--app-sidebar-text);
+  border-right: 1px solid var(--app-sidebar-border);
+  box-shadow: var(--app-shadow);
   transition:
     width var(--app-transition),
     transform var(--app-transition);
@@ -32,7 +34,7 @@
   place-items: center;
   border-radius: 8px;
   background: var(--app-primary);
-  color: #ffffff;
+  color: var(--app-white);
 }
 
 .sidebar__nav {
@@ -43,7 +45,7 @@
 
 .sidebar__section {
   padding: 1rem 0.75rem 0.5rem;
-  color: color-mix(in srgb, var(--app-sidebar-text) 68%, transparent);
+  color: var(--app-sidebar-section);
   font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -80,9 +82,19 @@
   height: 24px;
   place-items: center;
   border-radius: 6px;
-  background: rgb(255 255 255 / 6%);
+  color: var(--app-sidebar-icon);
+  background: var(--app-sidebar-icon-bg);
   font-size: 0.625rem;
   font-weight: 700;
+  transition:
+    background-color var(--app-transition),
+    color var(--app-transition);
+}
+
+.sidebar__link:hover .sidebar__icon,
+.sidebar__link.is-active .sidebar__icon {
+  color: var(--app-sidebar-text-active);
+  background: var(--app-sidebar-bg-hover);
 }
 
 .sidebar__label,
@@ -124,7 +136,7 @@
   display: block;
   padding: 0.55rem 0.75rem;
   border-radius: 8px;
-  color: var(--app-sidebar-text);
+  color: var(--app-sidebar-text-muted);
   font-size: 0.8125rem;
 }
 
