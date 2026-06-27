@@ -1,0 +1,29 @@
+<div class="page-title">
+  <div>
+    <h1 class="page-title__heading">
+      {{ layoutState.breadcrumbs().at(-1)?.label || 'Inicio' }}
+    </h1>
+  </div>
+
+  <nav aria-label="Breadcrumb">
+    <ol class="breadcrumb page-title__breadcrumb">
+      <li class="breadcrumb-item">
+        <a routerLink="/home">DSI Admin</a>
+      </li>
+
+      @for (item of layoutState.breadcrumbs(); track item.url) {
+        <li
+          class="breadcrumb-item"
+          [class.active]="item.active"
+          [attr.aria-current]="item.active ? 'page' : null"
+        >
+          @if (item.active) {
+            <span>{{ item.label }}</span>
+          } @else {
+            <a [routerLink]="item.url">{{ item.label }}</a>
+          }
+        </li>
+      }
+    </ol>
+  </nav>
+</div>

@@ -1,0 +1,41 @@
+<header class="topbar" role="banner">
+  <div class="topbar__start">
+    <button
+      id="main-menu-button"
+      type="button"
+      class="icon-button"
+      [attr.aria-expanded]="layoutState.sidebarExpanded()"
+      aria-controls="app-sidebar"
+      aria-label="Alternar menu principal"
+      (click)="layoutState.toggleSidebar()"
+    >
+      <span class="hamburger" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+  </div>
+
+  <nav class="topbar__nav" aria-label="Navegacion superior">
+    <a class="topbar__link" href="#main-content">Contenido</a>
+    <a class="topbar__link" routerLink="/home">Inicio</a>
+  </nav>
+
+  <div class="topbar__actions">
+    <button
+      type="button"
+      class="icon-button"
+      [attr.aria-pressed]="layoutState.theme() === 'dark'"
+      aria-label="Alternar tema"
+      (click)="layoutState.toggleTheme()"
+    >
+      <span class="theme-glyph" aria-hidden="true"></span>
+    </button>
+
+    <div class="topbar__profile" aria-label="Perfil">
+      <span class="topbar__avatar" aria-hidden="true">DS</span>
+      <span class="topbar__profile-name">Admin</span>
+    </div>
+  </div>
+</header>

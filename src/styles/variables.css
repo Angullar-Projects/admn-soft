@@ -1,0 +1,34 @@
+:root {
+  --app-primary: #5664d2;
+  --app-primary-strong: #4653bd;
+  --app-primary-soft: #eef0ff;
+  --app-accent: #23a6a6;
+  --app-body-bg: #f5f6f8;
+  --app-surface: #ffffff;
+  --app-surface-muted: #f8f9fb;
+  --app-border: #e7eaf0;
+  --app-text: #2f3542;
+  --app-text-muted: #74788d;
+  --app-sidebar-bg: #2a3042;
+  --app-sidebar-bg-active: #343b50;
+  --app-sidebar-text: #a6b0cf;
+  --app-sidebar-text-active: #ffffff;
+  --app-shadow: 0 0.5rem 1rem rgb(18 38 63 / 8%);
+  --app-topbar-height: 70px;
+  --app-sidebar-width: 250px;
+  --app-sidebar-collapsed-width: 76px;
+  --app-footer-height: 58px;
+  --app-transition: 180ms ease;
+}
+
+[data-bs-theme="dark"] {
+  --app-body-bg: #171b26;
+  --app-surface: #222838;
+  --app-surface-muted: #1c2230;
+  --app-border: #30384d;
+  --app-text: #e7eaf3;
+  --app-text-muted: #a2abc4;
+  --app-sidebar-bg: #202637;
+  --app-sidebar-bg-active: #2b3348;
+  --app-shadow: 0 0.5rem 1rem rgb(0 0 0 / 22%);
+}

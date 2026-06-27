@@ -1,0 +1,104 @@
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--app-topbar-height);
+  padding: 0 1.5rem;
+  border-bottom: 1px solid var(--app-border);
+  background: var(--app-surface);
+  box-shadow: 0 0.15rem 0.75rem rgb(18 38 63 / 4%);
+}
+
+.topbar__start,
+.topbar__actions,
+.topbar__nav {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.topbar__nav {
+  flex: 1;
+  margin-left: 1rem;
+}
+
+.topbar__link {
+  color: var(--app-text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.topbar__link:hover {
+  color: var(--app-primary);
+}
+
+.topbar__profile {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-width: 0;
+  color: var(--app-text);
+}
+
+.topbar__avatar {
+  display: inline-grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--app-primary-soft);
+  color: var(--app-primary-strong);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.topbar__profile-name {
+  overflow: hidden;
+  max-width: 7rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.icon-button {
+  display: inline-grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 0;
+  border-radius: 8px;
+  color: var(--app-text-muted);
+  background: transparent;
+  transition:
+    background-color var(--app-transition),
+    color var(--app-transition);
+}
+
+.icon-button:hover {
+  color: var(--app-primary);
+  background: var(--app-primary-soft);
+}
+
+.hamburger {
+  display: grid;
+  gap: 4px;
+  width: 18px;
+}
+
+.hamburger span {
+  display: block;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.theme-glyph {
+  width: 18px;
+  height: 18px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  box-shadow: inset -6px -2px 0 currentColor;
+}

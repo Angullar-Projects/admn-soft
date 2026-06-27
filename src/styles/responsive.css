@@ -1,0 +1,50 @@
+@media (max-width: 1199.98px) {
+  .app-shell__main {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .app-shell--mobile-open .sidebar {
+    transform: translateX(0);
+  }
+
+  .app-shell__body,
+  .app-shell--collapsed .app-shell__body {
+    margin-left: 0;
+  }
+
+  .topbar {
+    padding: 0 1rem;
+  }
+
+  .topbar__nav {
+    display: none;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .app-shell__main {
+    padding: 1rem;
+  }
+
+  .page-title {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .topbar__profile-name {
+    display: none;
+  }
+
+  .footer {
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.25rem;
+  }
+}

@@ -1,0 +1,11 @@
+.btn-primary {
+  --bs-btn-bg: var(--app-primary);
+  --bs-btn-border-color: var(--app-primary);
+  --bs-btn-hover-bg: var(--app-primary-strong);
+  --bs-btn-hover-border-color: var(--app-primary-strong);
+  --bs-btn-focus-shadow-rgb: 86, 100, 210;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  color: var(--app-text-muted);
+}

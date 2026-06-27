@@ -1,0 +1,81 @@
+.app-shell {
+  min-height: 100vh;
+  background: var(--app-body-bg);
+}
+
+.app-shell__body {
+  min-height: 100vh;
+  margin-left: var(--app-sidebar-width);
+  transition: margin-left var(--app-transition);
+}
+
+.app-shell--collapsed .app-shell__body {
+  margin-left: var(--app-sidebar-collapsed-width);
+}
+
+.app-shell__main {
+  min-height: calc(100vh - var(--app-topbar-height) - var(--app-footer-height));
+  padding: 1.5rem;
+}
+
+.app-shell__content {
+  min-height: calc(100vh - var(--app-topbar-height) - var(--app-footer-height) - 7rem);
+}
+
+.app-shell__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1025;
+  border: 0;
+  background: rgb(15 23 42 / 46%);
+}
+
+.page-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.page-title__heading {
+  margin: 0;
+  color: var(--app-text);
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.page-title__breadcrumb {
+  margin: 0;
+  color: var(--app-text-muted);
+  font-size: 0.8125rem;
+}
+
+.empty-page {
+  min-height: 18rem;
+}
+
+.not-found {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 2rem;
+  background: var(--app-body-bg);
+}
+
+.not-found__panel {
+  width: min(100%, 28rem);
+  padding: 2rem;
+  border: 1px solid var(--app-border);
+  border-radius: 8px;
+  background: var(--app-surface);
+  box-shadow: var(--app-shadow);
+  text-align: center;
+}
+
+.not-found__code {
+  margin: 0 0 0.5rem;
+  color: var(--app-primary);
+  font-size: 3rem;
+  font-weight: 700;
+}

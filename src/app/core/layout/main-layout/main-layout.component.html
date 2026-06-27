@@ -1,0 +1,29 @@
+<div
+  class="app-shell"
+  [class.app-shell--collapsed]="layoutState.sidebarCollapsed()"
+  [class.app-shell--mobile-open]="layoutState.mobileSidebarOpen()"
+>
+  <app-sidebar />
+
+  @if (layoutState.showMobileOverlay()) {
+    <button
+      type="button"
+      class="app-shell__overlay"
+      aria-label="Cerrar menu lateral"
+      (click)="closeSidebarFromOverlay()"
+    ></button>
+  }
+
+  <div class="app-shell__body">
+    <app-header />
+
+    <main id="main-content" class="app-shell__main" tabindex="-1">
+      <app-breadcrumb />
+      <section class="app-shell__content" aria-live="polite">
+        <router-outlet />
+      </section>
+    </main>
+
+    <app-footer />
+  </div>
+</div>
