@@ -20,7 +20,8 @@
   gap: 0.75rem;
   height: var(--app-topbar-height);
   padding: 0 1.25rem;
-  color: var(--app-sidebar-text-active);
+  border-bottom: 1px solid var(--app-sidebar-border);
+  color: var(--app-sidebar-brand-text);
   font-size: 1rem;
   font-weight: 700;
   white-space: nowrap;
@@ -94,7 +95,7 @@
 .sidebar__link:hover .sidebar__icon,
 .sidebar__link.is-active .sidebar__icon {
   color: var(--app-sidebar-text-active);
-  background: var(--app-sidebar-bg-hover);
+  background: var(--app-sidebar-icon-bg-active);
 }
 
 .sidebar__label,
@@ -143,6 +144,7 @@
 .sidebar__sublink:hover,
 .sidebar__sublink.is-active {
   color: var(--app-sidebar-text-active);
+  background: var(--app-sidebar-bg-hover);
 }
 
 .app-shell--collapsed .sidebar {
