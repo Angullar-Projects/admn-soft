@@ -1,1 +1,636 @@
-<p>create-product works!</p>
+<main class="producto-page">
+  <div class="producto-container">
+    <header class="producto-header">
+      <div>
+        <h1 class="producto-header__title">Nuevo producto</h1>
+
+        <p class="producto-header__description">
+          Captura la información necesaria para registrar un producto.
+        </p>
+      </div>
+    </header>
+
+    @if (guardadoCorrectamente()) {
+      <div
+        class="alert alert-success producto-alert"
+        role="alert"
+      >
+        <span>Producto guardado correctamente.</span>
+
+        <button
+          type="button"
+          class="producto-alert__close"
+          aria-label="Cerrar mensaje"
+          (click)="cerrarMensaje()"
+        >
+          &times;
+        </button>
+      </div>
+    }
+
+    @if (errorServidor()) {
+      <div
+        class="alert alert-danger producto-alert"
+        role="alert"
+      >
+        <span>{{ errorServidor() }}</span>
+
+        <button
+          type="button"
+          class="producto-alert__close"
+          aria-label="Cerrar mensaje"
+          (click)="cerrarMensaje()"
+        >
+          &times;
+        </button>
+      </div>
+    }
+
+    <form
+      [formRoot]="productoForm"
+      autocomplete="off"
+    >
+      <div class="row g-4">
+        <!-- Información general -->
+        <div class="col-12 col-xl-6">
+          <section class="form-card form-card--general">
+            <h2 class="form-card__title">Información general</h2>
+
+            <div class="form-section">
+              <label
+                for="nombre"
+                class="form-label"
+              >
+                Nombre del producto
+                <span class="required-mark">*</span>
+              </label>
+
+              <input
+                id="nombre"
+                type="text"
+                class="form-control"
+                placeholder="Ejemplo: Monitor LED de 24 pulgadas"
+                [formField]="productoForm.nombre"
+                [class.is-invalid]="
+                  productoForm.nombre().touched() &&
+                  productoForm.nombre().invalid()
+                "
+              />
+
+              @if (
+                productoForm.nombre().touched() &&
+                productoForm.nombre().invalid()
+              ) {
+                @for (
+                  error of productoForm.nombre().errors();
+                  track error
+                ) {
+                  <div class="invalid-feedback d-block">
+                    {{ error.message }}
+                  </div>
+                }
+              }
+            </div>
+
+            <div class="form-section">
+              <label
+                for="sku"
+                class="form-label"
+              >
+                Código SKU
+                <span class="required-mark">*</span>
+              </label>
+
+              <input
+                id="sku"
+                type="text"
+                class="form-control"
+                placeholder="Ejemplo: MON-LED-001"
+                [formField]="productoForm.sku"
+                [class.is-invalid]="
+                  productoForm.sku().touched() &&
+                  productoForm.sku().invalid()
+                "
+              />
+
+              @if (
+                productoForm.sku().touched() &&
+                productoForm.sku().invalid()
+              ) {
+                @for (
+                  error of productoForm.sku().errors();
+                  track error
+                ) {
+                  <div class="invalid-feedback d-block">
+                    {{ error.message }}
+                  </div>
+                }
+              }
+            </div>
+
+            <div class="form-section">
+              <label
+                for="codigoBarras"
+                class="form-label"
+              >
+                Código de barras
+              </label>
+
+              <input
+                id="codigoBarras"
+                type="text"
+                class="form-control"
+                placeholder="Ingresa el código de barras"
+                [formField]="productoForm.codigoBarras"
+                [class.is-invalid]="
+                  productoForm.codigoBarras().touched() &&
+                  productoForm.codigoBarras().invalid()
+                "
+              />
+
+              @if (
+                productoForm.codigoBarras().touched() &&
+                productoForm.codigoBarras().invalid()
+              ) {
+                @for (
+                  error of productoForm.codigoBarras().errors();
+                  track error
+                ) {
+                  <div class="invalid-feedback d-block">
+                    {{ error.message }}
+                  </div>
+                }
+              }
+            </div>
+          </section>
+        </div>
+
+        <!-- Columna derecha -->
+        <div class="col-12 col-xl-6">
+          <div class="right-column">
+            <!-- Datos comerciales -->
+            <section class="form-card">
+              <h2 class="form-card__title">Datos comerciales</h2>
+
+              <div class="row align-items-start g-3">
+                <div class="col-12 col-md-2">
+                  <label
+                    for="precio"
+                    class="form-label horizontal-label"
+                  >
+                    Precio
+                  </label>
+                </div>
+
+                <div class="col-12 col-md-10">
+                  <div class="input-group">
+                    <span class="input-group-text">$</span>
+
+                    <input
+                      id="precio"
+                      type="number"
+                      step="0.01"
+                      class="form-control"
+                      placeholder="0.00"
+                      [formField]="productoForm.precio"
+                      [class.is-invalid]="
+                        productoForm.precio().touched() &&
+                        productoForm.precio().invalid()
+                      "
+                    />
+                  </div>
+
+                  @if (
+                    productoForm.precio().touched() &&
+                    productoForm.precio().invalid()
+                  ) {
+                    @for (
+                      error of productoForm.precio().errors();
+                      track error
+                    ) {
+                      <div class="invalid-feedback d-block">
+                        {{ error.message }}
+                      </div>
+                    }
+                  }
+                </div>
+              </div>
+
+              <div class="row align-items-start g-3 commercial-row">
+                <div class="col-12 col-md-2">
+                  <label
+                    for="costo"
+                    class="form-label horizontal-label"
+                  >
+                    Costo
+                  </label>
+                </div>
+
+                <div class="col-12 col-md-10">
+                  <div class="input-group">
+                    <span class="input-group-text">$</span>
+
+                    <input
+                      id="costo"
+                      type="number"
+                      step="0.01"
+                      class="form-control"
+                      placeholder="0.00"
+                      [formField]="productoForm.costo"
+                      [class.is-invalid]="
+                        productoForm.costo().touched() &&
+                        productoForm.costo().invalid()
+                      "
+                    />
+                  </div>
+
+                  @if (
+                    productoForm.costo().touched() &&
+                    productoForm.costo().invalid()
+                  ) {
+                    @for (
+                      error of productoForm.costo().errors();
+                      track error
+                    ) {
+                      <div class="invalid-feedback d-block">
+                        {{ error.message }}
+                      </div>
+                    }
+                  }
+                </div>
+              </div>
+            </section>
+
+            <!-- Inventario -->
+            <section class="form-card">
+              <h2 class="form-card__title">Inventario</h2>
+
+              <div class="row g-3 align-items-start">
+                <div class="col-12 col-md-4">
+                  <label
+                    for="stock"
+                    class="form-label"
+                  >
+                    Existencia
+                  </label>
+
+                  <input
+                    id="stock"
+                    type="number"
+                    step="1"
+                    class="form-control"
+                    placeholder="0"
+                    [formField]="productoForm.stock"
+                    [class.is-invalid]="
+                      productoForm.stock().touched() &&
+                      productoForm.stock().invalid()
+                    "
+                  />
+
+                  @if (
+                    productoForm.stock().touched() &&
+                    productoForm.stock().invalid()
+                  ) {
+                    @for (
+                      error of productoForm.stock().errors();
+                      track error
+                    ) {
+                      <div class="invalid-feedback d-block">
+                        {{ error.message }}
+                      </div>
+                    }
+                  }
+                </div>
+
+                <div class="col-12 col-md-4">
+                  <label
+                    for="stockMinimo"
+                    class="form-label"
+                  >
+                    Stock mínimo
+                  </label>
+
+                  <input
+                    id="stockMinimo"
+                    type="number"
+                    step="1"
+                    class="form-control"
+                    placeholder="0"
+                    [formField]="productoForm.stockMinimo"
+                    [class.is-invalid]="
+                      productoForm.stockMinimo().touched() &&
+                      productoForm.stockMinimo().invalid()
+                    "
+                  />
+
+                  @if (
+                    productoForm.stockMinimo().touched() &&
+                    productoForm.stockMinimo().invalid()
+                  ) {
+                    @for (
+                      error of productoForm.stockMinimo().errors();
+                      track error
+                    ) {
+                      <div class="invalid-feedback d-block">
+                        {{ error.message }}
+                      </div>
+                    }
+                  }
+                </div>
+
+                <div class="col-12 col-md-4">
+                  <label
+                    for="estado"
+                    class="form-label"
+                  >
+                    Estado
+                  </label>
+
+                  <select
+                    id="estado"
+                    class="form-select"
+                    [formField]="productoForm.estado"
+                    [class.is-invalid]="
+                      productoForm.estado().touched() &&
+                      productoForm.estado().invalid()
+                    "
+                  >
+                    @for (estado of estados; track estado.value) {
+                      <option [value]="estado.value">
+                        {{ estado.label }}
+                      </option>
+                    }
+                  </select>
+
+                  @if (
+                    productoForm.estado().touched() &&
+                    productoForm.estado().invalid()
+                  ) {
+                    @for (
+                      error of productoForm.estado().errors();
+                      track error
+                    ) {
+                      <div class="invalid-feedback d-block">
+                        {{ error.message }}
+                      </div>
+                    }
+                  }
+                </div>
+              </div>
+            </section>
+
+            <!-- Texto de ayuda -->
+            <section class="form-card">
+              <h2 class="form-card__title">Ayuda</h2>
+
+              <div class="form-section form-section--last">
+                <label
+                  for="proveedor"
+                  class="form-label"
+                >
+                  Proveedor principal
+                </label>
+
+                <input
+                  id="proveedor"
+                  type="text"
+                  class="form-control"
+                  placeholder="Nombre del proveedor"
+                  [formField]="productoForm.proveedor"
+                  [class.is-invalid]="
+                    productoForm.proveedor().touched() &&
+                    productoForm.proveedor().invalid()
+                  "
+                />
+
+                <p class="form-help">
+                  Puedes dejar este campo vacío y asignar el proveedor
+                  posteriormente.
+                </p>
+
+                @if (
+                  productoForm.proveedor().touched() &&
+                  productoForm.proveedor().invalid()
+                ) {
+                  @for (
+                    error of productoForm.proveedor().errors();
+                    track error
+                  ) {
+                    <div class="invalid-feedback d-block">
+                      {{ error.message }}
+                    </div>
+                  }
+                }
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <!-- Clasificación -->
+        <div class="col-12">
+          <section class="form-card">
+            <h2 class="form-card__title">Clasificación</h2>
+
+            <div class="row g-3">
+              <div class="col-12 col-md-4">
+                <label
+                  for="categoria"
+                  class="form-label"
+                >
+                  Categoría
+                  <span class="required-mark">*</span>
+                </label>
+
+                <select
+                  id="categoria"
+                  class="form-select"
+                  [formField]="productoForm.categoria"
+                  [class.is-invalid]="
+                    productoForm.categoria().touched() &&
+                    productoForm.categoria().invalid()
+                  "
+                >
+                  <option value="">Selecciona una categoría</option>
+
+                  @for (categoria of categorias; track categoria) {
+                    <option [value]="categoria">
+                      {{ categoria }}
+                    </option>
+                  }
+                </select>
+
+                @if (
+                  productoForm.categoria().touched() &&
+                  productoForm.categoria().invalid()
+                ) {
+                  @for (
+                    error of productoForm.categoria().errors();
+                    track error
+                  ) {
+                    <div class="invalid-feedback d-block">
+                      {{ error.message }}
+                    </div>
+                  }
+                }
+              </div>
+
+              <div class="col-12 col-md-4">
+                <label
+                  for="marca"
+                  class="form-label"
+                >
+                  Marca
+                </label>
+
+                <input
+                  id="marca"
+                  type="text"
+                  class="form-control"
+                  placeholder="Marca del producto"
+                  [formField]="productoForm.marca"
+                  [class.is-invalid]="
+                    productoForm.marca().touched() &&
+                    productoForm.marca().invalid()
+                  "
+                />
+
+                @if (
+                  productoForm.marca().touched() &&
+                  productoForm.marca().invalid()
+                ) {
+                  @for (
+                    error of productoForm.marca().errors();
+                    track error
+                  ) {
+                    <div class="invalid-feedback d-block">
+                      {{ error.message }}
+                    </div>
+                  }
+                }
+              </div>
+
+              <div class="col-12 col-md-4">
+                <label
+                  for="unidad"
+                  class="form-label"
+                >
+                  Unidad
+                </label>
+
+                <select
+                  id="unidad"
+                  class="form-select"
+                  [formField]="productoForm.unidad"
+                  [class.is-invalid]="
+                    productoForm.unidad().touched() &&
+                    productoForm.unidad().invalid()
+                  "
+                >
+                  @for (unidad of unidades; track unidad) {
+                    <option [value]="unidad">
+                      {{ unidad }}
+                    </option>
+                  }
+                </select>
+
+                @if (
+                  productoForm.unidad().touched() &&
+                  productoForm.unidad().invalid()
+                ) {
+                  @for (
+                    error of productoForm.unidad().errors();
+                    track error
+                  ) {
+                    <div class="invalid-feedback d-block">
+                      {{ error.message }}
+                    </div>
+                  }
+                }
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Información avanzada -->
+        <div class="col-12">
+          <section class="form-card">
+            <h2 class="form-card__title">Información avanzada</h2>
+
+            <div class="form-section form-section--last">
+              <label
+                for="descripcion"
+                class="form-label"
+              >
+                Descripción
+              </label>
+
+              <textarea
+                id="descripcion"
+                rows="4"
+                class="form-control producto-textarea"
+                placeholder="Describe las características principales del producto"
+                [formField]="productoForm.descripcion"
+                [class.is-invalid]="
+                  productoForm.descripcion().touched() &&
+                  productoForm.descripcion().invalid()
+                "
+              ></textarea>
+
+              <div class="description-footer">
+                <span>
+                  Incluye información útil para identificar el producto.
+                </span>
+
+                <span>
+                  {{ productoForm.descripcion().value().length }}/500
+                </span>
+              </div>
+
+              @if (
+                productoForm.descripcion().touched() &&
+                productoForm.descripcion().invalid()
+              ) {
+                @for (
+                  error of productoForm.descripcion().errors();
+                  track error
+                ) {
+                  <div class="invalid-feedback d-block">
+                    {{ error.message }}
+                  </div>
+                }
+              }
+            </div>
+
+            <footer class="form-actions">
+              <button
+                type="button"
+                class="btn btn-light action-button"
+                [disabled]="productoForm().submitting()"
+                (click)="limpiarFormulario()"
+              >
+                Limpiar
+              </button>
+
+              <button
+                type="submit"
+                class="btn btn-primary action-button"
+                [disabled]="productoForm().submitting()"
+              >
+                @if (productoForm().submitting()) {
+                  <span
+                    class="spinner-border spinner-border-sm me-2"
+                    aria-hidden="true"
+                  ></span>
+
+                  Guardando...
+                } @else {
+                  Guardar producto
+                }
+              </button>
+            </footer>
+          </section>
+        </div>
+      </div>
+    </form>
+  </div>
+</main>

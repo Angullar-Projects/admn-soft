@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import {form, FormField, FormRoot, maxLength,min, required } from '@angular/forms/signals';
+
+type EstadoProducto = 'activo | inactivo';
 
 @Component({
   selector: 'app-create-product',
