@@ -1,5 +1,5 @@
 <main class="producto-page">
-  <div class="producto-container">
+  < class="producto-container">
     <header class="producto-header">
       <div>
         <h1 class="producto-header__title">Nuevo producto</h1>
@@ -11,21 +11,24 @@
     </header>
 
     @if (guardadoCorrectamente()) {
-      <div
-        class="alert alert-success producto-alert"
-        role="alert"
-      >
-        <span>Producto guardado correctamente.</span>
+     
 
-        <button
-          type="button"
-          class="producto-alert__close"
-          aria-label="Cerrar mensaje"
-          (click)="cerrarMensaje()"
+        <div
+            class="alert alert-success producto-alert"
+            role="alert"
         >
-          &times;
-        </button>
-      </div>
+            <span>Producto guardado correctamente.</span>
+
+            <button
+            type="button"
+            class="producto-alert__close"
+            aria-label="Cerrar mensaje"
+            (click)="cerrarMensaje()"
+            >
+            &times;
+            </button>
+        </div>
+      
     }
 
     @if (errorServidor()) {
@@ -53,116 +56,118 @@
       <div class="row g-4">
         <!-- Información general -->
         <div class="col-12 col-xl-6">
-          <section class="form-card form-card--general">
-            <h2 class="form-card__title">Información general</h2>
+          <div class="card shadow p-3 mb-5 bg-body rounded">
+            <section class="form-card form-card--general">
+                <h2 class="form-card__title">Información general</h2>
 
-            <div class="form-section">
-              <label
-                for="nombre"
-                class="form-label"
-              >
-                Nombre del producto
-                <span class="required-mark">*</span>
-              </label>
+                <div class="form-section">
+                <label
+                    for="nombre"
+                    class="form-label"
+                >
+                    Nombre del producto
+                    <span class="required-mark">*</span>
+                </label>
 
-              <input
-                id="nombre"
-                type="text"
-                class="form-control"
-                placeholder="Ejemplo: Monitor LED de 24 pulgadas"
-                [formField]="productoForm.nombre"
-                [class.is-invalid]="
-                  productoForm.nombre().touched() &&
-                  productoForm.nombre().invalid()
-                "
-              />
+                <input
+                    id="nombre"
+                    type="text"
+                    class="form-control"
+                    placeholder="Ejemplo: Monitor LED de 24 pulgadas"
+                    [formField]="productoForm.nombre"
+                    [class.is-invalid]="
+                    productoForm.nombre().touched() &&
+                    productoForm.nombre().invalid()
+                    "
+                />
 
-              @if (
-                productoForm.nombre().touched() &&
-                productoForm.nombre().invalid()
-              ) {
-                @for (
-                  error of productoForm.nombre().errors();
-                  track error
+                @if (
+                    productoForm.nombre().touched() &&
+                    productoForm.nombre().invalid()
                 ) {
-                  <div class="invalid-feedback d-block">
-                    {{ error.message }}
-                  </div>
+                    @for (
+                    error of productoForm.nombre().errors();
+                    track error
+                    ) {
+                    <div class="invalid-feedback d-block">
+                        {{ error.message }}
+                    </div>
+                    }
                 }
-              }
-            </div>
+                </div>
 
-            <div class="form-section">
-              <label
-                for="sku"
-                class="form-label"
-              >
-                Código SKU
-                <span class="required-mark">*</span>
-              </label>
+                <div class="form-section">
+                <label
+                    for="sku"
+                    class="form-label"
+                >
+                    Código SKU
+                    <span class="required-mark">*</span>
+                </label>
 
-              <input
-                id="sku"
-                type="text"
-                class="form-control"
-                placeholder="Ejemplo: MON-LED-001"
-                [formField]="productoForm.sku"
-                [class.is-invalid]="
-                  productoForm.sku().touched() &&
-                  productoForm.sku().invalid()
-                "
-              />
+                <input
+                    id="sku"
+                    type="text"
+                    class="form-control"
+                    placeholder="Ejemplo: MON-LED-001"
+                    [formField]="productoForm.sku"
+                    [class.is-invalid]="
+                    productoForm.sku().touched() &&
+                    productoForm.sku().invalid()
+                    "
+                />
 
-              @if (
-                productoForm.sku().touched() &&
-                productoForm.sku().invalid()
-              ) {
-                @for (
-                  error of productoForm.sku().errors();
-                  track error
+                @if (
+                    productoForm.sku().touched() &&
+                    productoForm.sku().invalid()
                 ) {
-                  <div class="invalid-feedback d-block">
-                    {{ error.message }}
-                  </div>
+                    @for (
+                    error of productoForm.sku().errors();
+                    track error
+                    ) {
+                    <div class="invalid-feedback d-block">
+                        {{ error.message }}
+                    </div>
+                    }
                 }
-              }
-            </div>
+                </div>
 
-            <div class="form-section">
-              <label
-                for="codigoBarras"
-                class="form-label"
-              >
-                Código de barras
-              </label>
+                <div class="form-section">
+                <label
+                    for="codigoBarras"
+                    class="form-label"
+                >
+                    Código de barras
+                </label>
 
-              <input
-                id="codigoBarras"
-                type="text"
-                class="form-control"
-                placeholder="Ingresa el código de barras"
-                [formField]="productoForm.codigoBarras"
-                [class.is-invalid]="
-                  productoForm.codigoBarras().touched() &&
-                  productoForm.codigoBarras().invalid()
-                "
-              />
+                <input
+                    id="codigoBarras"
+                    type="text"
+                    class="form-control"
+                    placeholder="Ingresa el código de barras"
+                    [formField]="productoForm.codigoBarras"
+                    [class.is-invalid]="
+                    productoForm.codigoBarras().touched() &&
+                    productoForm.codigoBarras().invalid()
+                    "
+                />
 
-              @if (
-                productoForm.codigoBarras().touched() &&
-                productoForm.codigoBarras().invalid()
-              ) {
-                @for (
-                  error of productoForm.codigoBarras().errors();
-                  track error
+                @if (
+                    productoForm.codigoBarras().touched() &&
+                    productoForm.codigoBarras().invalid()
                 ) {
-                  <div class="invalid-feedback d-block">
-                    {{ error.message }}
-                  </div>
+                    @for (
+                    error of productoForm.codigoBarras().errors();
+                    track error
+                    ) {
+                    <div class="invalid-feedback d-block">
+                        {{ error.message }}
+                    </div>
+                    }
                 }
-              }
-            </div>
-          </section>
+                </div>
+            </section>
+          </div>
         </div>
 
         <!-- Columna derecha -->
