@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { PRODUCTS_ROUTES } from './features/products/products.routes';
 
 export const routes: Routes = [
   {
@@ -23,6 +24,7 @@ export const routes: Routes = [
       {
         path:'products',
         title:'productos',
+        loadChildren: () => import('./features/products/products.routes').then((module) => module.PRODUCTS_ROUTES),
         
       },
     ],
