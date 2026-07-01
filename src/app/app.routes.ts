@@ -20,6 +20,11 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/home/home.page').then((component) => component.HomePage),
       },
+      {
+        path:'products',
+        title:'productos',
+        
+      },
     ],
   },
   {
