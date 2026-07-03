@@ -10,11 +10,35 @@
       </div>
     </header>
     <!--mandamos mensaje de error o éxito -->
-    <div class="alert alert-success product-alert" role="alert">
-      <span>Producto Guardado Exitosamente</span>
-      <button type="button" class="producto-alert__close" aria-label="Cerrar mensaje"
-      (click)="cerrarMensaje()">&times;</button>
+    @if (guardadoCorrectamente()){
+    <div class="alert alert-success producto-alert"role="alert">
+            <span>Producto guardado correctamente.</span>
+            <button type="button" class="producto-alert__close" aria-label="Cerrar mensaje"
+            (click)="cerrarMensaje()">&times;</button>
+      </div>
+    }
+    @if(errorServidor()){
+    <!--mandamos mensaje de error o éxito -->
+    <div class="alert alert-danger producto-alert" role="alert">
+      <span>Ocurrio un error al guardar el producto.</span><!--cambiamos por una iterpolacion-->
+      <button type="button" class="producto-alert__close" aria-label="Cerrar mensaje" (click)="cerrarMensaje()">
+        &times;
+      </button>
     </div>
-
+  }
   </div>
+  <!--iniciamos la logica del formulario-->
+  <form autocomplete="off">
+  
+    <div class="row g-4">
+    <!--Informacion general-->
+    <div class="col-12 col-xl-8 card shadow p-3 mb-5 bg-body rounded">
+
+    </div>
+    <!--columna derecha-->
+    <div class="col-12 col-xl-4 card shadow me-px  p-3 mb-5 bg-body rounded"></div>
+    </div>
+  
+</form>
+  <!--cerramos el formulario-->
 </main>

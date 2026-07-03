@@ -10,10 +10,29 @@ import type { EstadoProducto, ProductoFormModel } from '../../domain/product.mod
   styleUrls: ['./create-product.css'],
 })
 export class CreateProduct {
+  
+  readonly PRODUCTO_INIICAL: ProductoFormModel = {
+    nombre: '',
+    description: '',
+    imageUrl: '',
+    price: 0,
+  };
+  
+  /** Indica si el producto fue guardado correctamente. variable reactiva */
+  readonly guardadoCorrectamente = signal(false);
+  /** Indica si ocurrió un error en el servidor. variable reactiva */
+  readonly errorServidor = signal('');
+  readdonlyproductModel =signal<ProductoFormModel>({
+    ...this.PRODUCTO_INIICAL,
+  });
 
-
-
-  cerrarMensaje(){
-    console.log('cerrar mensaje');
+ 
+  limpiarFormulario() :void {
+    
+  }
+  
+  cerrarMensaje() :void {
+    //cambiamos el valor a false para que el mensaje de guardado correcto desaparezca
+    this.guardadoCorrectamente.set(false);
   }
 }
