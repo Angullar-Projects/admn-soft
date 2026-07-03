@@ -2,7 +2,14 @@ export type EstadoProducto = 'activo' | 'inactivo';
 
 export interface ProductoFormModel{
     nombre: string;
-    sku: string;
+    description: string;
+    imageUrl:string;
+    price:number;
+}
+
+
+/*
+sku: string;
     codigoBarras: string;
     categoria: string;
     marca: string;
@@ -13,5 +20,4 @@ export interface ProductoFormModel{
     unidad: string;
     proveedor: string;
     estado: EstadoProducto;
-    descripcion: string;
-}
+*/
