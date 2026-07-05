@@ -5,7 +5,7 @@ import type { EstadoProducto, ProductoFormModel } from '../../domain/product.mod
 @Component({
   selector: 'app-create-product',
   standalone: true,
-  imports:[],  //imports: [FormField, FormRoot],
+  imports: [FormField, FormRoot],
   templateUrl: './create-product.html',
   styleUrls: ['./create-product.css'],
 })
@@ -22,10 +22,19 @@ export class CreateProduct {
   readonly guardadoCorrectamente = signal(false);
   /** Indica si ocurrió un error en el servidor. variable reactiva */
   readonly errorServidor = signal('');
-  readdonlyproductModel =signal<ProductoFormModel>({
+  readonly productModel =signal<ProductoFormModel>({
+    //inicializamos el modelo con los valores iniciales
     ...this.PRODUCTO_INIICAL,
   });
 
+  //agrgeamos la logica del formulario
+  readonly productoForm = form(this.productModel,  
+      (producto) =>{ required (producto.nombre,{
+        message: 'El nombre es requerido',});
+
+      }
+
+   );
  
   limpiarFormulario() :void {
     
