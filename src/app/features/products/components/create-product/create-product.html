@@ -41,7 +41,9 @@
             <span class="required-mark">*</span>
           </label>
           <input type="text" id="nombre" class="form-control form-control-sm"
-           placeholder="Nombre del producto" required 
+           placeholder="Nombre del producto" 
+           [formField]="productoForm.nombre" 
+           [class.is-invalid]="productoForm.nombre().touched() && productoForm.nombre().invalid()" 
         /> 
         </div>
       </section>
