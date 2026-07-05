@@ -56,11 +56,37 @@
         </div>
         <div class="form-section">
           <label for="descripcion" class="form-label">Descripción</label>
-          <input id="descripcion" type="text" class="form-control form-control-sm"
+          <textarea id="descripcion" 
+          rows="4"
+           class="form-control form-control-sm"
           placeholder="Ingresa una descripción del producto"
           [formField]="productoForm.description" 
           [class.is-invalid]="productoForm.description().touched() &&
-          productoForm.description().invalid()"/>
+          productoForm.description().invalid()"></textarea>
+          @if( productoForm.description().touched() && productoForm.description().invalid())
+          {
+              @for(error of productoForm.description().errors();track error)
+              {
+                  <div class="invalid-feedback d-block">
+                    {{error.message}}
+                  </div>
+              }
+          }
+        </div>
+        <div class="form-section">
+          <label for="price" class="form-label">Precio</label>
+          <input id="price" type="number" class="form-control form-control-sm"
+          placeholder="Ingresa el precio" [formField]="productoForm.price"
+          [class.is-valid]="productoForm.price().touched()&&productoForm.price().invalid()"/>
+          @if(productoForm.price().touched() && productoForm.price().invalid())
+          {
+              @for(error of productoForm.price().errors();track error)
+              {
+                  <div class="invalid-feedback d-block">
+                    {{error.message}}
+                  </div>
+              }
+          }
         </div>
       </section>
     </div>
