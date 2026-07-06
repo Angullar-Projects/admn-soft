@@ -30,9 +30,9 @@
   <!--iniciamos la logica del formulario-->
   <form [formRoot]="productoForm"  autocomplete="off">
   
-    <div class="row gx-4 gy-4">
+    <div class="row">
     <!--Informacion general-->
-    <div class="col-12 col-xl-8 card shadow p-3 bg-body rounded">
+    <div class="col-12 col-xl-8 card shadow py-3  pe-xl-3 bg-body rounded">
     <!--empezamos la seccion del formulario -->
       <section class="form-card form-card--general">
       <h2 class="form-card__title">Información general</h2>
@@ -88,20 +88,18 @@
               }
           }
         </div>
-        <!--footer de botones-->
-    <footer class="form-actions mt-2">
-              <button
+        <div class="form-section mt-2">
+           <button
                 type="button"
-                class="btn btn-light action-button p-x-2"
+                class="btn btn-sm btn-light action-button p-x-2 "
                 [disabled]="productoForm().submitting()"
                 (click)="limpiarFormulario()"
               >
                 Limpiar
               </button>
-
               <button
                 type="submit"
-                class="btn btn-primary action-button"
+                class="btn btn-sm btn-primary action-button mx-3 px-3"
                 [disabled]="productoForm().submitting()"
               >
                 @if (productoForm().submitting()) {
@@ -115,12 +113,13 @@
                   Guardar producto
                 }
               </button>
-    </footer>
-    <!--footer de botones -->
+
+        </div>
+
       </section>
     </div>
     <!--columna derecha-->
-    <div class="col-12 col-xl-4 card shadow me-px bg-body rounded"></div>
+    <div class="col-12 col-xl-4 card shadow ps-xl-3 bg-body rounded"></div>
     </div>
     
 </form>
