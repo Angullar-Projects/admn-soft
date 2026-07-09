@@ -76,7 +76,8 @@ export class CreateProduct {
              this.guardadoCorrectamente.set(false);
              this.errorServidor.set('');
              try{
-
+                 this.saveProducto();
+                 return;
              }
              catch (error) {
                  console.error('Error al guardar el producto:', error);
