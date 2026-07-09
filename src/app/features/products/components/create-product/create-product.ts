@@ -38,22 +38,20 @@ export class CreateProduct {
     const productToSave: ProductoFormModel ={
       ...this.product()
     };
+    this.productoFacade.create(productToSave);
   }
 
-  readonly PRODUCTO_INIICAL: ProductoFormModel = {
-    nombre: '',
-    description: '',
-    imageUrl: '',
-    price: 0,
-  };
+ 
   
   /** Indica si el producto fue guardado correctamente. variable reactiva */
   readonly guardadoCorrectamente = signal(false);
   /** Indica si ocurrió un error en el servidor. variable reactiva */
   readonly errorServidor = signal('');
-  readonly productModel =signal<ProductoFormModel>({
-    //inicializamos el modelo con los valores iniciales
-    ...this.PRODUCTO_INIICAL,
+  readonly productModel = signal<ProductoFormModel>({
+    nombre: '',
+    description: '',
+    imageUrl: '',
+    price: 0,
   });
 
   //agrgeamos la logica del formulario
@@ -64,13 +62,14 @@ export class CreateProduct {
       }
 
    );
- 
-  limpiarFormulario() :void {
-    
-  }
+   
+   resetForm():void{
+       this.product.set({
+        nombre: '',
+        description: '',
+        imageUrl:'',
+        price: 0
+      });
+   }
   
-  cerrarMensaje() :void {
-    //cambiamos el valor a false para que el mensaje de guardado correcto desaparezca
-    this.guardadoCorrectamente.set(false);
-  }
 }
