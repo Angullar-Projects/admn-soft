@@ -1,7 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { form, FormField, FormRoot, maxLength, min, required } from '@angular/forms/signals';
 import type { ProductoFormModel } from '../../domain/product.model';
-
+import { ProductoFacade   } from '../../application/facade/ProductoFacade';
 @Component({
   selector: 'app-create-product',
   standalone: true,
@@ -10,7 +10,36 @@ import type { ProductoFormModel } from '../../domain/product.model';
   styleUrls: ['./create-product.css'],
 })
 export class CreateProduct {
-  
+
+  //inyectamos el facade para trabajar con la separacion de las capas
+  readonly productoFacade = inject(ProductoFacade);
+
+  //utilizamos un signal, tipado de ProductFormModel es un objeto que envuelve un product
+  //los valores se ñeen a traves de una funcion
+  readonly product = signal<ProductoFormModel>({
+    nombre: '',
+    description: '',
+    imageUrl: '',
+    price: 0,
+
+  });
+  //este metodo se asegura de unicamente trabajar con las propiedades adecuadas del object ProductoFormModel
+  //de esta manera no se pueden enviar valores no validos de la propiedad.
+  //field es solo una propiedad valida de productoFormModel
+  updateProductField<K extends keyof ProductoFormModel>(field: K, value: ProductoFormModel[K]):void 
+  {
+      this.product.update(product => ({
+          ...product,
+          [field]:value
+      }));
+  }
+
+  saveProducto():void{
+    const productToSave: ProductoFormModel ={
+      ...this.product()
+    };
+  }
+
   readonly PRODUCTO_INIICAL: ProductoFormModel = {
     nombre: '',
     description: '',
