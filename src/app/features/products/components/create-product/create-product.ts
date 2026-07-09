@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { form, FormField, FormRoot, maxLength, min, required } from '@angular/forms/signals';
 import type { ProductoFormModel } from '../../domain/product.model';
 import { ProductoFacade   } from '../../application/facade/ProductoFacade';
+import { Action } from 'rxjs/internal/scheduler/Action';
 @Component({
   selector: 'app-create-product',
   standalone: true,
@@ -58,10 +59,43 @@ export class CreateProduct {
   readonly productoForm = form(this.productModel,  
       (producto) =>{ required (producto.nombre,{
         message: 'El nombre es requerido',});
+      
+        maxLength(producto.nombre, 100, {
+        message: 'El nombre no puede superar los 100 caracteres.',
+      });
+      min(producto.price,0.01,{
+        message:'El precio debe ser mayor que cero.',
+      });
+      maxLength(producto.description,500,{
+        message: 'La descripción no puede superar los 500 caracteres.',
+      });
+     },
+     {
+      submission:{
+         action: async (field)=> {   
+             this.guardadoCorrectamente.set(false);
+             this.errorServidor.set('');
+             try{
 
-      }
+             }
+             catch (error) {
+                 console.error('Error al guardar el producto:', error);
+                 this.errorServidor.set('No fue posible guardar el producto. Intenta nuevamente.');
+                 return {
+                     kind: 'serverError',
+                     message: 'No fue posible guardar el producto.',
+                 };
+             }
 
-   );
+         },
+         onInvalid: (field) =>{
+           this.guardadoCorrectamente.set(false);
+           const primerError = field().errorSummary()[0];
+           primerError?.fieldTree().focusBoundControl();
+         }
+        }
+
+      });
    
    resetForm():void{
        this.product.set({
