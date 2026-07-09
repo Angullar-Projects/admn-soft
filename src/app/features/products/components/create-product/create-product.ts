@@ -72,4 +72,10 @@ export class CreateProduct {
       });
    }
   
+
+    cerrarMensaje(): void {
+    this.guardadoCorrectamente.set(false);
+    this.errorServidor.set('');
+  }
+
 }
