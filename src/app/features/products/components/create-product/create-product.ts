@@ -18,9 +18,9 @@ export class CreateProduct {
   //utilizamos un signal, tipado de ProductFormModel es un objeto que envuelve un product
   //los valores se ñeen a traves de una funcion
   readonly product = signal<ProductoFormModel>({
-    nombre: '',
+    name: '',
     description: '',
-    imageUrl: '',
+    //imageUrl: '',
     price: 0,
 
   });
@@ -49,18 +49,18 @@ export class CreateProduct {
   /** Indica si ocurrió un error en el servidor. variable reactiva */
   readonly errorServidor = signal('');
   readonly productModel = signal<ProductoFormModel>({
-    nombre: '',
+    name: '',
     description: '',
-    imageUrl: '',
+    //imageUrl: '',
     price: 0,
   });
 
   //agrgeamos la logica del formulario
   readonly productoForm = form(this.productModel,  
-      (producto) =>{ required (producto.nombre,{
+      (producto) =>{ required (producto.name,{
         message: 'El nombre es requerido',});
       
-        maxLength(producto.nombre, 100, {
+        maxLength(producto.name, 100, {
         message: 'El nombre no puede superar los 100 caracteres.',
       });
       min(producto.price,0.01,{
@@ -100,9 +100,9 @@ export class CreateProduct {
    
    resetForm():void{
        this.product.set({
-        nombre: '',
+        name: '',
         description: '',
-        imageUrl:'',
+        //imageUrl:'',
         price: 0
       });
    }

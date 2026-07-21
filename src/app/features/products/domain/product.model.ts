@@ -1,9 +1,9 @@
 export type EstadoProducto = 'activo' | 'inactivo';
 
 export interface ProductoFormModel{
-    nombre: string;
+    name: string;
     description: string;
-    imageUrl:string;
+    //imageUrl:string;
     price:number;
 }
 
