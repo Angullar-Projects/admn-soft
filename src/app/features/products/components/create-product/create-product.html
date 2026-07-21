@@ -42,12 +42,12 @@
           </label>
           <input type="text" id="nombre" class="form-control form-control-sm"
            placeholder="Nombre del producto" 
-           [formField]="productoForm.nombre" 
-           [class.is-invalid]="productoForm.nombre().touched() && productoForm.nombre().invalid()" 
+           [formField]="productoForm.name" 
+           [class.is-invalid]="productoForm.name().touched() && productoForm.name().invalid()" 
         /> 
-        @if ( productoForm.nombre().touched()&&
-        productoForm.nombre().invalid() ){
-            @for(error of productoForm.nombre().errors();track error){
+        @if ( productoForm.name().touched()&&
+        productoForm.name().invalid() ){
+            @for(error of productoForm.name().errors();track error){
                 <div class="invalid-feedback d-block">
                   {{error.message}}
                 </div>
