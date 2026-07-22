@@ -35,10 +35,17 @@ export class CreateProduct {
       }));
   }
 
+
   saveProducto():void{
     const productToSave: ProductoFormModel ={
-      ...this.product()
+      //...this.product()
+      ...this.productModel()
     };
+    
+  console.log('product', this.product());
+  console.log('productModel', this.productModel());
+  console.log('productoForm', this.productoForm());
+  
     this.productoFacade.create(productToSave);
   }
 
